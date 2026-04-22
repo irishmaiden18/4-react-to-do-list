@@ -79,7 +79,15 @@ textarea {
   width: 42%;
 }
 
+.user-responsible {
+  width: 23%;
+}
+
 .task-input {
   width: 40%;
+}
+
+.empty-list {
+  text-align: center;
 }
 
