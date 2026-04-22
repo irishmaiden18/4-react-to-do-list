@@ -23,10 +23,10 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
     const handleChange = (event) => {
 
         //destructure name and value from target to get the data so we can refer to them as name and value
-    const {name, value} = event.targetUEIotgk
-
+    const {name, value} = event.target
+        
         // create an updatedTask variable to hold the exisiting task data as well as the change
-        const updatedTaskData = {
+        const updatedTaskData ={
             ...taskData,
             [name]: value
         }
@@ -41,15 +41,15 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
         // prevent the page refresh
         event.preventDefault()
 
-        // create a new task and populate it with the data from taskData we get from the form
+        // create a new task and populate it with the data from taskData we get from the form. if username is not defined fill in "unclaimed"
         const newTask = {
-            // ise the data as a unique ID
+            // use the data as a unique ID
             id: Date.now(),
             task: taskData.task,
             taskDescription: taskData.taskDescription,
             priority: taskData.priority,
             completed: taskData.completed,
-            username: taskData.username
+            username: taskData.username || "unclaimed"
         }
         
         // call addToDo function to add our task to our list of tasks
@@ -88,6 +88,7 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
                     value={taskData.task} 
                     // calls the handleChange function to deal with changes to the field
                     onChange={handleChange}
+                    className="task-input"
                 />
             </div>
             <div>
@@ -132,9 +133,12 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
                     name="username"
                     value={taskData.username}
                     onChange={handleChange}
+                    className="username"
                 />
             </div>
-            <button>Add Task</button>
+            <div className="submit">
+                <button>Add Task</button>
+            </div>
         </form>
         <h2>Sign In</h2>
         {/* form to sign in as a user */}
@@ -147,9 +151,12 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
                     value={submitUsername}
                     // sets the submitUsername state variable to the input at time of change
                     onChange={(event) => setSubmitUsername(event.target.value)}
+                    className="username"
                 />
             </div>
-            <button onClick={handleSignInSubmit}>Sign In</button>
+            <div className="submit">
+                <button onClick={handleSignInSubmit}>Sign In</button>
+            </div>
         </form>
     </>
   )

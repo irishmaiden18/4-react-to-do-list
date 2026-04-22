@@ -24,6 +24,62 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
+
+button {
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: #03a649;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  border-color: #03a649;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  font-weight: bold;
+  margin-left: 22%;
+}
+
+ol {
+  margin-left: 17%;
+}
+
+textarea {
+  margin-left: 22%;
+  width: 55%;
+}
+
+.display-username {
+  margin-left: 20%;
+}
+
+.display {
+  text-align: center;
+}
+
+.task {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.submit {
+  text-align: center;
+}
+
+.username {
+  width: 42%;
+}
+
+.task-input {
+  width: 40%;
+}
+

@@ -10,7 +10,7 @@ const ToDoDisplayList = ({toDos, deleteToDo, deleteCompletedToDos, displayUserna
         let updatedToDos = [...toDos]
 
         // if displayUserName is not empty
-        if (!displayUsername == "") {
+        if (displayUsername !== "") {
 
             // filter all the toDos with the given displayUsername and add them to the copied array
             updatedToDos = toDos.filter((task) => task.username === displayUsername)
@@ -33,18 +33,20 @@ const ToDoDisplayList = ({toDos, deleteToDo, deleteCompletedToDos, displayUserna
     // component return
     return (
     <>
-        <h2>To Do List</h2>
-
         {/* display the username submitted */}
-        <h3>Username: {displayUsername}</h3>
+        <h3 className="display-username">Username: {displayUsername}</h3>
+
+        <h2>To Do List</h2>
+        
+        <div className="display">
+            {/* add a button to delete all completed tasks */}
+            <button className="delete-comppleted-tasks" onClick={deleteCompletedToDos}>Delete Completed Tasks</button>
+        </div>
 
         {/* display an ordered list of toDos given a list of toDos*/}
         <ol>
             {displayList(toDos)}
         </ol>
-
-        {/* add a button to delete all completed tasks */}
-        <button onClick={deleteCompletedToDos}>Delete Completed Tasks</button>
     </>
   )
 }
