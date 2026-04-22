@@ -12,10 +12,16 @@ function App() {
     setToDos([...toDos, toDo])
   }
 
+  const deleteToDo = (id) => {
+    const updatedToDos = toDos.filter((task) => task.id !==id)
+
+    setToDos(updatedToDos)
+  }
+
   return (
     <>
       <h1>To Do List</h1>
-      <ToDoDisplayList toDos={toDos}/>
+      <ToDoDisplayList toDos={toDos} deleteToDo={deleteToDo}/>
       <ToDoForm addToDo={addToDo}/>
     </>
   )

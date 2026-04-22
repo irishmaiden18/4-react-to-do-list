@@ -1,14 +1,16 @@
 import ToDoDisplayItem from "./ToDoDisplayItem"
 
-const ToDoDisplayList = ({toDos}) => {
+const ToDoDisplayList = ({toDos, deleteToDo}) => {
   return (
     <>
         <h2>To Do List</h2>
+        <ol>
         {toDos.map((toDo) => (
-            <ol key={toDo.id}>
-                <li><ToDoDisplayItem toDo={toDo}/></li>
-            </ol>
+            <li key={toDo.id}>
+                <ToDoDisplayItem toDo={toDo} deleteToDo={deleteToDo}/>
+            </li>
         ))}
+        </ol>
     </>
   )
 }
