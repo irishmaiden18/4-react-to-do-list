@@ -1,18 +1,18 @@
 import { useState } from "react"
 
-const ToDoForm = ({addToDo}) => {
+const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
 
     const defaultTask = {
         id: "",
         task: "",
         taskDescription: "",
-        completed: false
+        priority: "",
+        completed: false,
+        username: ""
     }
 
     const [taskData, setTaskData] = useState(defaultTask)
-    // const [task, setTask] = useState("")
-    // const [taskDescription, setTaskDescription] = useState("")
-    // const [completed, setCompleted] = useState("")
+    const [submitUsername, setSubmitUsername] = useState("")
 
     const handleChange = (event) => {
         const {name, value} = event.target
@@ -32,7 +32,9 @@ const ToDoForm = ({addToDo}) => {
             id: Date.now(),
             task: taskData.task,
             taskDescription: taskData.taskDescription,
-            completed: taskData.completed
+            priority: taskData.priority,
+            completed: taskData.completed,
+            username: taskData.username
         }
         // console.log("taskData.completed" + taskData.completed)
         addToDo(newTask)
@@ -41,9 +43,30 @@ const ToDoForm = ({addToDo}) => {
         // console.log("submit called")
     }
 
+    const handleSignInSubmit = (event) => {
+        event.preventDefault()
+
+        setDisplayUsername(submitUsername)
+
+        setSubmitUsername("")
+    }
+
   return (
     <>
         <h2>Add A To Do</h2>
+        <form>
+            <h2>Sign In</h2>
+            <div>
+                <label>Username: </label>
+                <input 
+                    type="text"
+                    name="submitUsername"
+                    value={submitUsername}
+                    onChange={(event) => setSubmitUsername(event.target.value)}
+                />
+            </div>
+            <button onClick={handleSignInSubmit}>Sign In</button>
+        </form>
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Task Name: </label>
@@ -56,14 +79,29 @@ const ToDoForm = ({addToDo}) => {
             </div>
             <div>
                 <label>Task Description: </label>
-                <textarea
-                    name="taskDescription"
-                    value={taskData.taskDescription}
-                    onChange={handleChange}
-                ></textarea>
+                <div>
+                    <textarea
+                        name="taskDescription"
+                        value={taskData.taskDescription}
+                        onChange={handleChange}
+                    ></textarea>
+                </div>
             </div>
             <div>
-                <label>Complete</label>
+                <label>Priority </label>
+                <select
+                    name="priority"
+                    value={taskData.priority}
+                    onChange={handleChange}
+                >
+                    <option value="">Select an option</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+            </div>
+            <div>
+                <label>Complete </label>
                 <select
                     name="completed"
                     value={taskData.completed}
@@ -73,6 +111,15 @@ const ToDoForm = ({addToDo}) => {
                     <option value="true">Complete</option>
                     <option value="false">Incomplete</option>
                 </select>
+            </div>
+            <div>
+                <label>Username: </label>
+                <input
+                    type="text"
+                    name="username"
+                    value={taskData.username}
+                    onChange={handleChange}
+                />
             </div>
             <button>Add Task</button>
         </form>
