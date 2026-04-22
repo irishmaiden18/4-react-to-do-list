@@ -54,19 +54,6 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
   return (
     <>
         <h2>Add A To Do</h2>
-        <form>
-            <h2>Sign In</h2>
-            <div>
-                <label>Username: </label>
-                <input 
-                    type="text"
-                    name="submitUsername"
-                    value={submitUsername}
-                    onChange={(event) => setSubmitUsername(event.target.value)}
-                />
-            </div>
-            <button onClick={handleSignInSubmit}>Sign In</button>
-        </form>
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Task Name: </label>
@@ -122,6 +109,19 @@ const ToDoForm = ({addToDo, displayUsername, setDisplayUsername}) => {
                 />
             </div>
             <button>Add Task</button>
+        </form>
+        <h2>Sign In</h2>
+        <form>
+            <div>
+                <label>Username: </label>
+                <input 
+                    type="text"
+                    name="submitUsername"
+                    value={submitUsername}
+                    onChange={(event) => setSubmitUsername(event.target.value)}
+                />
+            </div>
+            <button onClick={handleSignInSubmit}>Sign In</button>
         </form>
     </>
   )
