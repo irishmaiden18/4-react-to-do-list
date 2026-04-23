@@ -53,7 +53,7 @@ function App() {
   // function to editTodo, takes in todo id and taskData
   const editTodo = (id, taskData) => {
 
-    // set isEditMode state to true
+    // set isEditMode state to true so we get the edit form
     setIsEditMode(true)
 
     // set the editId to the parameter id
@@ -64,15 +64,15 @@ function App() {
 
   const confirmUpdate = (task, description, priority, username) => {
 
-    // go through each todo until we get to the one whose ID we originally clicked
+    // go through each todo until we get to the one whose ID we want to update
     const updatedList = toDos.map((todo) => {
 
       // when we find the one to update,
       if(todo.id === editId) {
 
-        // modify the properties to equal what is in the input fields by creating a new todo with those properties and those of our original todo
-        // use ...todo to retain all other properties of our todo
+        // modify the properties to equal what is in the input fields by creating a new todo with those properties and those of our original todo. if one of the properties is blank use the property value already there in the list.
         const updatedTodo = {
+          // use ...todo to retain all other properties of our todo
           ...todo,
           task: task || todo.task,
           taskDescription: description || todo.taskDescription,
@@ -95,6 +95,40 @@ function App() {
       setToDos(updatedList)
   }
 
+
+  const handleCompleteTask = (id) => {
+
+    console.log(id)
+
+    // go through each todo until we get to the one whose ID we want to update
+    const updatedList = toDos.map((todo) => {
+
+      // when we find the one to update,
+      if(todo.id === id) {
+
+        // modify the completed property to equal the oposite of what it is now
+        // use ...todo to retain all other properties of our todo
+        const updatedTodo = {
+          // use ...todo to retain all other properties of our todo
+          ...todo,
+          completed: !todo.completed
+        }
+
+        // return updated todo to our final list
+        return updatedTodo
+
+      // if it is not the todo we want to update, 
+      } else {
+
+        // return the todo as is
+        return todo
+      }
+    })
+
+    // set our todolist to the updated list we just created with the updated todo
+    setToDos(updatedList)
+  }
+
   
 
   return (
@@ -108,6 +142,7 @@ function App() {
         deleteCompletedToDos={deleteCompletedToDos} 
         displayUsername={displayUsername}
         editTodo={editTodo}
+        handleCompleteTask={handleCompleteTask}
       />
 
       {/* import ToDoForm component with fed props */}

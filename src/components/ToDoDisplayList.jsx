@@ -1,7 +1,7 @@
 import ToDoDisplayItem from "./ToDoDisplayItem"
 
 // destructure fed props
-const ToDoDisplayList = ({toDos, deleteToDo, deleteCompletedToDos, displayUsername, editTodo}) => {
+const ToDoDisplayList = ({toDos, deleteToDo, deleteCompletedToDos, displayUsername, editTodo, handleCompleteTask}) => {
   
     // function to display our list of ToDos, takes in an array of ToDos
     const displayList = (toDos) => {
@@ -25,7 +25,7 @@ const ToDoDisplayList = ({toDos, deleteToDo, deleteCompletedToDos, displayUserna
                     (updatedToDos.map((toDo) => (
                         // set key equal to the unique id's created when adding a toDo
                         <li key={toDo.id}>
-                            <ToDoDisplayItem toDo={toDo} deleteToDo={deleteToDo} editTodo={editTodo}/>
+                            <ToDoDisplayItem toDo={toDo} deleteToDo={deleteToDo} editTodo={editTodo} handleCompleteTask={handleCompleteTask}/>
                         </li>
                     ))) : (
                         <h3 className="empty-list">List is Empty! Please add an item.</h3>

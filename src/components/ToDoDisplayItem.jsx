@@ -1,6 +1,6 @@
 
 // destructure the given props
-const ToDoDisplayItem = ({toDo, deleteToDo, editTodo}) => {
+const ToDoDisplayItem = ({toDo, deleteToDo, editTodo, handleCompleteTask}) => {
 
     // function to capitalize the first letter of every word of the task title
     const capitalizeFirstLetterEveryWord = (string) => {
@@ -39,7 +39,8 @@ const ToDoDisplayItem = ({toDo, deleteToDo, editTodo}) => {
         <p><b>{toDo.priority}</b> Priority!</p>
         <p><b>Person Responsible:</b> {toDo.username}</p>
         {/* only display the completed part if the item is, in fact, completed */}
-        {toDo.completed && <h5>Completed!</h5>}
+        {/* {toDo.completed && <h5>Completed!</h5>} */}
+        <p>Completed: {toDo.completed ? "completed" : "incompleted"} <button onClick={() => handleCompleteTask(toDo.id)}>Complete</button></p>
         <button onClick={() => editTodo(toDo.id)}>Edit</button>
         <button onClick={() => deleteToDo(toDo.id)}>Delete To Do</button>
     </>
