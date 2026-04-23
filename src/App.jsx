@@ -50,7 +50,7 @@ function App() {
 
 
 
-  // function to editTodo, takes in todo id and taskData
+  // function to change to isEditMode and set the id to edit, takes in todo id and taskData
   const editTodo = (id, taskData) => {
 
     // set isEditMode state to true so we get the edit form
@@ -61,7 +61,7 @@ function App() {
   }
 
 
-
+  // function to update most properties of a task, incl. task, description, priority & username. takes in the properties it updates as parameters
   const confirmUpdate = (task, description, priority, username) => {
 
     // go through each todo until we get to the one whose ID we want to update
@@ -97,8 +97,6 @@ function App() {
 
 
   const handleCompleteTask = (id) => {
-
-    console.log(id)
 
     // go through each todo until we get to the one whose ID we want to update
     const updatedList = toDos.map((todo) => {
